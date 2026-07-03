@@ -1,0 +1,3 @@
+87;Taza;True;1
+01;Sears (Fisica 1);True;0
+02;Los Pilares de la Tierra;True;1
