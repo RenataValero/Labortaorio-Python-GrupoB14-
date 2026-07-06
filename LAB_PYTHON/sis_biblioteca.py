@@ -176,3 +176,28 @@ def devolver_libro():
         del prestamos[dni]  # si ya no tiene préstamos, borramos la clave
 
     guardar_datos()
+
+
+def mostrar_estadisticas():
+    """Muestra estadísticas generales del sistema de biblioteca."""
+    total_usuarios = len(usuarios)
+    total_libros = len(libros)
+    total_prestamos = sum(len(lista) for lista in prestamos.values())
+
+    # Libro más prestado
+    libro_mas_prestado = None
+    max_prestamos = -1
+    for _, datos in libros.items():
+        if datos["prestamos"] > max_prestamos:
+            max_prestamos = datos["prestamos"]
+            libro_mas_prestado = datos["titulo"]
+
+    print("\n📊 Estadísticas de la biblioteca:")
+    print(f"👥 Total de usuarios: {total_usuarios}")
+    print(f"📚 Total de libros: {total_libros}")
+    print(f"📖 Préstamos activos: {total_prestamos}")
+    if libro_mas_prestado:
+        print(
+            f"⭐ Libro más prestado: {libro_mas_prestado} "
+            f"({max_prestamos} veces)"
+        )
