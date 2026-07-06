@@ -68,3 +68,17 @@ def guardar_datos():
     with open(ARCHIVO_PRESTAMOS, "w", encoding="utf-8") as f:
         for p in prestamos:
             f.write(f"{p['codigo']};{p['dni']};{p['fecha']}\n")
+
+# ----------------- Funciones del sistema -----------------
+
+
+def registrar_usuario():
+    """Registra un nuevo usuario en el sistema."""
+    dni = input("Ingrese DNI: ")
+    nombre = input("Ingrese nombre: ")
+    if dni in usuarios:
+        print("⚠️ Usuario ya registrado.")
+    else:
+        usuarios[dni] = {"nombre": nombre}
+        print("✅ Usuario registrado.")
+        guardar_datos()
