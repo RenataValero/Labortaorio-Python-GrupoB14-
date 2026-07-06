@@ -12,7 +12,7 @@ ARCHIVO_PRESTAMOS = "prestamos.txt"
 
 usuarios = {}
 libros = {}
-prestamos = []
+prestamos = {}
 # Inicialización del proyecto - commit 1
 
 # ------------------ Funciones de persistencia ------------------
@@ -98,3 +98,32 @@ def registrar_libro():
         }
         print("✅ Libro registrado.")
         guardar_datos()
+
+
+def registrar_prestamo():
+    """Registra un préstamo de un libro a un usuario."""
+    dni = input("Ingrese DNI del usuario: ")
+    codigo = input("Ingrese código del libro: ")
+
+    if dni not in usuarios:
+        print("⚠️ Usuario no registrado.")
+        return
+
+    if codigo not in libros:
+        print("⚠️ Libro no registrado.")
+        return
+
+    if not libros[codigo]["disponible"]:
+        print("⚠️ Libro no disponible.")
+        return
+
+    # Registrar préstamo
+    libros[codigo]["disponible"] = False
+    libros[codigo]["prestamos"] += 1
+
+    if dni not in prestamos:
+        prestamos[dni] = []
+    prestamos[dni].append(codigo)
+
+    print("✅ Préstamo registrado.")
+    guardar_datos()
