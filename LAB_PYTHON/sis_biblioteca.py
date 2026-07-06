@@ -3,8 +3,8 @@ Sistema de gestión de biblioteca - Escenario 7
 Trabajo Final Integrador Python
 """
 
-import datetime
 import os
+from datetime import datetime
 
 ARCHIVO_USUARIOS = "usuarios.txt"
 ARCHIVO_LIBROS = "libros.txt"
@@ -40,16 +40,10 @@ def cargar_datos():
                 }
 
     if os.path.exists(ARCHIVO_PRESTAMOS):
-        with open(ARCHIVO_PRESTAMOS, "r", encoding="utf-8") as f:
-            for linea in f:
-                codigo, dni, fecha = linea.strip().split(";")
-                prestamos.append({
-                    "codigo": codigo,
-                    "dni": dni,
-                    "fecha": datetime.datetime.strptime(
-                        fecha, "%Y-%m-%d"
-                    ).date(),
-                })
+        with open(ARCHIVO_PRESTAMOS, "w", encoding="utf-8") as f:
+            for dni, lista in prestamos.items():
+                for p in lista:
+                    f.write(f"{dni};{p['codigo']};{p['fecha']}\n")
 
 
 def guardar_datos():
@@ -66,8 +60,9 @@ def guardar_datos():
             )
 
     with open(ARCHIVO_PRESTAMOS, "w", encoding="utf-8") as f:
-        for p in prestamos:
-            f.write(f"{p['codigo']};{p['dni']};{p['fecha']}\n")
+        for dni, lista in prestamos.items():
+            for p in lista:
+                f.write(f"{dni};{p['codigo']};{p['fecha']}\n")
 
 # ----------------- Funciones del sistema -----------------
 
@@ -123,7 +118,11 @@ def registrar_prestamo():
 
     if dni not in prestamos:
         prestamos[dni] = []
-    prestamos[dni].append(codigo)
+
+    prestamos[dni].append({
+        "codigo": codigo,
+        "fecha": datetime.now().strftime("%Y-%m-%d")
+    })
 
     print("✅ Préstamo registrado.")
     guardar_datos()
