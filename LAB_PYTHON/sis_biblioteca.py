@@ -6,49 +6,67 @@ Trabajo Final Integrador Python
 import os
 from datetime import datetime
 
-ARCHIVO_USUARIOS = "usuarios.txt"
-ARCHIVO_LIBROS = "libros.txt"
-ARCHIVO_PRESTAMOS = "prestamos.txt"
+# Carpeta base = donde está este archivo
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Archivos de datos siempre dentro de LAB_PYTHON
+ARCHIVO_USUARIOS = os.path.join(BASE_DIR, "usuarios.txt")
+ARCHIVO_LIBROS = os.path.join(BASE_DIR, "libros.txt")
+ARCHIVO_PRESTAMOS = os.path.join(BASE_DIR, "prestamos.txt")
 
 usuarios = {}
 libros = {}
 prestamos = {}
+
+
 # Inicialización del proyecto - commit 1
 
 # ------------------ Funciones de persistencia ------------------
 
 
 def cargar_datos():
-    """Carga usuarios, libros y préstamos desde archivos .txt."""
+    """Crea los archivos si no existen y carga datos en memoria."""
+
+    # Crear archivos vacíos si no existen
+    for archivo in [ARCHIVO_USUARIOS, ARCHIVO_LIBROS, ARCHIVO_PRESTAMOS]:
+        if not os.path.exists(archivo):
+            with open(archivo, "w", encoding="utf-8") as f:
+                pass
+
+    # Cargar usuarios
     if os.path.exists(ARCHIVO_USUARIOS):
         with open(ARCHIVO_USUARIOS, "r", encoding="utf-8") as f:
             for linea in f:
-                dni, nombre = linea.strip().split(";")
-                usuarios[dni] = {"nombre": nombre}
+                if linea.strip():
+                    dni, nombre = linea.strip().split(";")
+                    usuarios[dni] = {"nombre": nombre}
 
+    # Cargar libros
     if os.path.exists(ARCHIVO_LIBROS):
         with open(ARCHIVO_LIBROS, "r", encoding="utf-8") as f:
             for linea in f:
-                # Se asegura el correcto espaciado pos-coma
-                codigo, titulo, disponible, prestamos_count = (
-                    linea.strip().split(";")
-                )
-                libros[codigo] = {
-                    "titulo": titulo,
-                    "disponible": disponible == "True",
-                    "prestamos": int(prestamos_count),
-                }
+                if linea.strip():
+                    codigo, titulo, disponible, prestamos_count = (
+                        linea.strip().split(";")
+                    )
+                    libros[codigo] = {
+                        "titulo": titulo,
+                        "disponible": disponible == "True",
+                        "prestamos": int(prestamos_count),
+                    }
 
+    # Cargar préstamos
     if os.path.exists(ARCHIVO_PRESTAMOS):
         with open(ARCHIVO_PRESTAMOS, "r", encoding="utf-8") as f:
             for linea in f:
-                dni, codigo, fecha = linea.strip().split(";")
-                if dni not in prestamos:
-                    prestamos[dni] = []
-                prestamos[dni].append({
-                    "codigo": codigo,
-                    "fecha": fecha
-                })
+                if linea.strip():
+                    dni, codigo, fecha = linea.strip().split(";")
+                    if dni not in prestamos:
+                        prestamos[dni] = []
+                    prestamos[dni].append({
+                        "codigo": codigo,
+                        "fecha": fecha
+                    })
 
 
 def guardar_datos():
