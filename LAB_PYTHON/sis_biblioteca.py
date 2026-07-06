@@ -82,3 +82,19 @@ def registrar_usuario():
         usuarios[dni] = {"nombre": nombre}
         print("✅ Usuario registrado.")
         guardar_datos()
+
+
+def registrar_libro():
+    """Registra un nuevo libro en el sistema."""
+    codigo = input("Ingrese código del libro: ")
+    titulo = input("Ingrese título del libro: ")
+    if codigo in libros:
+        print("⚠️ Libro ya registrado.")
+    else:
+        libros[codigo] = {
+            "titulo": titulo,
+            "disponible": True,
+            "prestamos": 0,
+        }
+        print("✅ Libro registrado.")
+        guardar_datos()
