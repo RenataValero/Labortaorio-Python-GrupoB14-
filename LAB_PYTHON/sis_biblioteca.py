@@ -17,6 +17,7 @@ prestamos = []
 
 # ------------------ Funciones de persistencia ------------------
 
+
 def cargar_datos():
     """Carga usuarios, libros y préstamos desde archivos .txt."""
     if os.path.exists(ARCHIVO_USUARIOS):
@@ -67,8 +68,3 @@ def guardar_datos():
     with open(ARCHIVO_PRESTAMOS, "w", encoding="utf-8") as f:
         for p in prestamos:
             f.write(f"{p['codigo']};{p['dni']};{p['fecha']}\n")
-
-#hago la prueba de commit 2: usuarios["123"] = {"nombre": "Ana"}
-                                #guardar_datos()
-                                #cargar_datos()
-                                #print(usuarios)
