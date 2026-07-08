@@ -1,4 +1,5 @@
-01;Las Mil y Una Noches (volumen 1);True;0
+01;Las Mil y Una Noches (volumen 1);True;1
 02;Calculo 1;True;0
-03;Juegos del Hambre (Capitulo 1);True;1
+03;Juegos del Hambre (Capitulo 1);False;3
 05;Ingenieria y Sociedad ;True;1
+06;La Hipótesis del Amor ;True;0
