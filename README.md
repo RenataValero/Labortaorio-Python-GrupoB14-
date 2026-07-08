@@ -42,7 +42,7 @@ Es decir, constituye la capa lógica del sistema.
 #### Funcionalidades Implementadas:
 El sistema permite cinco operaciones principales:
 
-#####Registro de usuarios
+##### Registro de usuarios
 Permite incorporar un nuevo usuario utilizando:
 - **DNI**
 - **Nombre**
