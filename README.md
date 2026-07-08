@@ -101,6 +101,11 @@ No es necesario instalar librerías externas, ya que el proyecto utiliza únicam
 ---
 
 ## Instrucciones de Ejecución
+## OPCION 1
+
+Abrir el archivo "menu_principal.py", hacer clic derecho y correr el programa con python.
+
+## OPCION 2
 
 #### 1. Descargar el proyecto
 
