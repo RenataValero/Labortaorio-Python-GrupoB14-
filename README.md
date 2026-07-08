@@ -39,7 +39,7 @@ Es decir, constituye la capa lógica del sistema.
 
 ------------
 
-####Funcionalidades Implementadas:
+#### Funcionalidades Implementadas:
 El sistema permite cinco operaciones principales:
 
 #####Registro de usuarios
@@ -49,13 +49,13 @@ Permite incorporar un nuevo usuario utilizando:
 
 Antes de agregarlo verifica que el DNI no exista.
 
-#####Registro de libros
+##### Registro de libros
 Permite registrar nuevos libros indicando:
 - **código**
 - **título**
 Inicialmente todos los libros quedan disponibles.
 
-#####Registro de préstamos
+##### Registro de préstamos
 Para prestar un libro el sistema verifica:
 - **que el usuario exista;**
 - **que el libro exista;**
@@ -67,7 +67,7 @@ Si todas las condiciones se cumplen:
 - **registra la fecha actual;**
 - **guarda el préstamo.**
 
-#####Devolución
+##### Devolución
 Cuando un libro es devuelto:
 - **verifica que realmente esté prestado;**
 - **calcula cuántos días pasaron desde el préstamo;**
@@ -77,7 +77,7 @@ Finalmente:
 - **elimina el préstamo;**
 - **vuelve a marcar el libro como disponible.**
 
-#####Estadísticas
+##### Estadísticas
 El sistema calcula:
 - **cantidad total de usuarios;**
 - **cantidad total de libros;**
